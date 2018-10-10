@@ -1,85 +1,128 @@
 <template>
-<div>
-    <button :class="btnClass"  @click="btnClick" >
-        {{btnShow}}
+<button :class="['btn-'+btnShow,
+        {'btnShadow':btnShadow},
+        {'btnDisable':eDisable},
+        'btn',
+        ]" @click="e=>!eDisable?$emit('click',e):''">
+        <img v-show="icon != ''"  :src="icon" :class="['btn-icon']" />
+        <img v-show="loading" :src="loadingView" :class="['btn-icon']" :style="{'transform':'rotate('+loadingRotate+'deg)'}"/>
+        <slot></slot>
     </button>
-</div>
 </template>
 
 <script>
 export default {
     props: {
         color: {
-            type: String,
+            type: String
         },
         btnShow: {
+            type: String
+        },
+        btnShadow: {
+            type: Boolean,
+            default: false
+        },
+        eDisable: {
+            type: Boolean,
+            default: false
+        },
+        icon: {
             type: String,
+            default: ""
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
-        return {};
+        return {
+            loadingView: require("../../../assets/loading.png"),
+            loadingRotate: 0,
+        };
     },
-    created() {},
-    methods: {
-        btnClick(e) {
-            this.$emit('click', e);
-        }
+    created() {
+        setInterval(() => {
+            this.loadingRotate+=10;
+        }, 100);
     },
-    computed: {
-        btnClass() {
-            return {
-                'btn': true,
-                'btn-primary': this.color == 'primary',
-                'btn-secondary': this.color == 'secondary',
-                'btn-success': this.color == 'success',
-                'btn-warning': this.color == 'warning',
-                'btn-info': this.color == 'info',
-                'btn-error': this.color == 'error',
-            }
-        }
-    }
+    methods: {},
+    computed: {}
 };
 </script>
 
 <style scoped>
 .btn {
+    display: flex;
     border-radius: 3px;
     border: none;
-    width: 100%;
-    height: 100%;
-    box-shadow: 2px 2px 3px #aaaaaa;
     outline: none;
+    color: #fff;
+    justify-content: center;
+    width: 20%;
 }
 
-.btn :hover {
-    background-color: #ff5690;
+.btnDisable {
+    color: #bfcbd9;
+    box-shadow: 2px 2px 3px #bfcbd9;
+}
+
+.btn-shadow {
+    box-shadow: 2px 2px 3px #aaaaaa;
 }
 
 .btn-primary {
-    background-color: #3ba2f4;
+    background: #3faaf5;
+}
+
+.btn-primary:hover {
+    background: rgba(63, 169, 245, 0.8);
 }
 
 .btn-secondary {
-    background-color: #ff4081;
+    background: #ff4081;
 }
 
-.btn-secondary :hover {
-    background-color: #ff5690;
+.btn-secondary:hover {
+    background: rgba(255, 64, 129, 0.9);
 }
 
 .btn-success {
-    background-color: #4caf50;
+    background: #4caf50;
+}
+
+.btn-success:hover {
+    background: rgba(76, 175, 80, 0.8);
 }
 
 .btn-warning {
-    background-color: #fdd835;
+    background: #fdd835;
+}
+
+.btn-warning:hover {
+    background: rgba(253, 216, 53, 0.8);
 }
 
 .btn-info {
-    background-color: #2196f3;
+    background: #85d2ff;
+}
+
+.btn-info:hover {
+    background: rgba(133, 210, 255, 0.8);
 }
 
 .btn-error {
-    background-color: #f44336;
+    background: #f44336;
+}
+
+.btn-error:hover {
+    background: rgba(244, 67, 54, 0.8);
+}
+
+.btn-icon {
+    height: 20px;
+    width: 20px;
+    margin: 0px 5px 0px 5px;
 }
 </style>
