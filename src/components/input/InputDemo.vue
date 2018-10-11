@@ -2,7 +2,7 @@
 <div>
     <div class="btn-line">
         <section>
-            <h1>Button 按钮</h1>
+            <h1>Input 输入框</h1>
             <hr />
             <span>
                 基础用法
@@ -15,6 +15,35 @@
             <div class="btn-demo-show-line ">
                 <EInput class="btn-line-item" />
             </div>
+        </div>
+        <section>
+            <span>
+               禁用输入框
+            </span>
+        </section>
+        <div class="btn-demo-show-column">
+            <div class="btn-demo-show-line ">
+                <EInput class="btn-line-item" :disable=true />
+            </div>
+        </div>
+        <section>
+            <span>
+              带图标的输入框
+            </span>
+        </section>
+        <div class="btn-demo-show-column">
+            <div class="btn-demo-show-line ">
+                <EInput class="btn-line-item" :icon="'search'" @iconClick="alerts" />
+            </div>
+        </div>
+        <section>
+            <span>
+              带头部/尾部的输入框
+            </span>
+        </section>
+        <div class="btn-demo-show-column">
+            <EInput class="btn-line-item" :soltPosition="'prepend'" :icon="'search'" /><br>
+            <EInput class="btn-line-item" :soltPosition="'append'" :soltValue="'.com'" />
         </div>
     </div>
 </div>
@@ -30,7 +59,11 @@ export default {
     data() {
         return {};
     },
-    methods: {},
+    methods: {
+        alerts() {
+            alert("hello world");
+        }
+    },
     computed: {}
 };
 </script>
