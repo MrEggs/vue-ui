@@ -36,10 +36,8 @@
             </span>
         </section>
         <div class="btn-demo-show-row">
-            <div class="btn-demo-show-line ">
-                <EButton @click="alert" :color="'primary'" :btnShow="'primary'" class="btn-common-item">未禁用</EButton>
-                <EButton @click="alert" :color="'primary'" :eDisable=true :btnShow="'primary'" class="btn-common-item">禁用</EButton>
-            </div>
+            <EButton @click="alert" :color="'primary'" :btnShow="'primary'" class="btn-common-item">未禁用</EButton>
+            <EButton @click="alert" :color="'primary'" :eDisable=true :btnShow="'primary'" class="btn-common-item">禁用</EButton>
         </div>
         <section>
             <span>
@@ -47,16 +45,14 @@
             </span>
         </section>
         <div class="btn-demo-show-row">
-            <div class="btn-demo-show-line ">
-                <EButton @click="alert" :color="'primary'" :btnShow="'primary'" :icon="icon" class="btn-common-item">带图标</EButton>
-            </div>
+            <EButton @click="alert" :color="'primary'" :btnShow="'primary'" :icon="icon" class="btn-common-item">带图标</EButton>
         </div>
         <section>
             <span>
                 加载中
             </span>
         </section>
-        <div class="btn-demo-show">
+        <div class="btn-demo-show-row">
             <EButton @click="alert" :color="'primary'" :btnShow="'primary'" :loading=true class="btn-common-item">带图标</EButton>
         </div>
     </div>
