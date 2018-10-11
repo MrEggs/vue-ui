@@ -11,30 +11,45 @@
                 使用type、plain和round属性来定义 Button 的样式。
             </span>
         </section>
-        <div class="btn-demo-show">
-            <EButton @click="alert" :color="'primary'" :btnShow="'primary'" class="btn-line-item">primary</EButton>
-            <EButton @click="alert" :color="'secondary'" :btnShow="'secondary'" class="btn-line-item">secondary</EButton>
-            <EButton @click="alert" :color="'success'" :btnShow="'success'" class="btn-line-item">success</EButton>
-            <EButton @click="alert" :color="'warning'" :btnShow="'warning'" class="btn-line-item">warning</EButton>
-            <EButton @click="alert" :color="'info'" :btnShow="'info'" class="btn-line-item">info</EButton>
-            <EButton @click="alert" :color="'error'" :btnShow="'error'" class="btn-line-item">error</EButton>
+        <div class="btn-demo-show-column">
+            <div class="btn-demo-show-line ">
+                <EButton @click="alert" :color="'primary'" :btnShow="'primary'" class="btn-line-item">primary</EButton>
+                <EButton @click="alert" :color="'secondary'" :btnShow="'secondary'" class="btn-line-item">secondary</EButton>
+                <EButton @click="alert" :color="'success'" :btnShow="'success'" class="btn-line-item">success</EButton>
+                <EButton @click="alert" :color="'warning'" :btnShow="'warning'" class="btn-line-item">warning</EButton>
+                <EButton @click="alert" :color="'info'" :btnShow="'info'" class="btn-line-item">info</EButton>
+                <EButton @click="alert" :color="'error'" :btnShow="'error'" class="btn-line-item">error</EButton>
+
+            </div>
+            <div class="btn-demo-show-line ">
+                <EButton @click="alert" :radius=true :color="'primary'" :btnShow="'primary'" class="btn-line-item">primary</EButton>
+                <EButton @click="alert" :radius=true :color="'secondary'" :btnShow="'secondary'" class="btn-line-item">secondary</EButton>
+                <EButton @click="alert" :radius=true :color="'success'" :btnShow="'success'" class="btn-line-item">success</EButton>
+                <EButton @click="alert" :radius=true :color="'warning'" :btnShow="'warning'" class="btn-line-item">warning</EButton>
+                <EButton @click="alert" :radius=true :color="'info'" :btnShow="'info'" class="btn-line-item">info</EButton>
+                <EButton @click="alert" :radius=true :color="'error'" :btnShow="'error'" class="btn-line-item">error</EButton>
+            </div>
         </div>
         <section>
             <span>
                 禁用状态
             </span>
         </section>
-        <div class="btn-demo-show">
-            <EButton @click="alert" :color="'primary'" :btnShow="'primary'" class="btn-common-item">未禁用</EButton>
-            <EButton @click="alert" :color="'primary'" :eDisable=true :btnShow="'primary'" class="btn-common-item">禁用</EButton>
+        <div class="btn-demo-show-row">
+            <div class="btn-demo-show-line ">
+                <EButton @click="alert" :color="'primary'" :btnShow="'primary'" class="btn-common-item">未禁用</EButton>
+                <EButton @click="alert" :color="'primary'" :eDisable=true :btnShow="'primary'" class="btn-common-item">禁用</EButton>
+            </div>
         </div>
         <section>
             <span>
                 图标
             </span>
         </section>
-        <div class="btn-demo-show">
-            <EButton @click="alert" :color="'primary'" :btnShow="'primary'" :icon="icon" class="btn-common-item">带图标</EButton>
+        <div class="btn-demo-show-row">
+            <div class="btn-demo-show-line ">
+                <EButton @click="alert" :color="'primary'" :btnShow="'primary'" :icon="icon" class="btn-common-item">带图标</EButton>
+            </div>
         </div>
         <section>
             <span>
@@ -100,9 +115,22 @@ export default {
     text-align: left;
 }
 
-.btn-demo-show {
+.btn-demo-show-column {
     display: flex;
+    flex-direction: column;
     padding: 20px;
     border: 1px solid #e2ecf4;
+}
+
+.btn-demo-show-row {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border: 1px solid #e2ecf4;
+}
+
+.btn-demo-show-line {
+    display: flex;
+    flex-direction: row;
 }
 </style>

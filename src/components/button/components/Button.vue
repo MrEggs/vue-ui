@@ -2,10 +2,11 @@
 <button :class="['btn-'+btnShow,
         {'btnShadow':btnShadow},
         {'btnDisable':eDisable},
+        {'btn-radius':radius},
         'btn',
         ]" @click="e=>!eDisable?$emit('click',e):''">
-        <img v-show="icon != ''"  :src="icon" :class="['btn-icon']" />
-        <img v-show="loading" :src="loadingView" :class="['btn-icon']" :style="{'transform':'rotate('+loadingRotate+'deg)'}"/>
+        <img v-if="icon != ''"  :src="icon" :class="['btn-icon']" />
+        <img v-if="loading" :src="loadingView" :class="['btn-icon']" :style="{'transform':'rotate('+loadingRotate+'deg)'}"/>
         <slot></slot>
     </button>
 </template>
@@ -27,6 +28,10 @@ export default {
             type: Boolean,
             default: false
         },
+        radius: {
+            type: Boolean,
+            default: false
+        },
         icon: {
             type: String,
             default: ""
@@ -43,9 +48,11 @@ export default {
         };
     },
     created() {
-        setInterval(() => {
-            this.loadingRotate+=10;
-        }, 100);
+        if (this.loading) {
+            setInterval(() => {
+                this.loadingRotate += 10;
+            }, 100);
+        }
     },
     methods: {},
     computed: {}
@@ -70,6 +77,10 @@ export default {
 
 .btn-shadow {
     box-shadow: 2px 2px 3px #aaaaaa;
+}
+
+.btn-radius {
+    border-radius: 50%;
 }
 
 .btn-primary {

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import HelloWorld from '@/components/HelloWorld'
 import Button from '@/components/button/buttonDemo'
+import Input from '@/components/input/InputDemo'
 
 Vue.use(Router)
 
@@ -17,5 +18,11 @@ export default new Router({
       name: 'button',
       component: Button
     },
+    {
+      path: '/Input',
+      name: 'input',
+      component: Input
+    },
   ]
 })
+ 

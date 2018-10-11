@@ -12,7 +12,9 @@
                 <ol class="nav-ol">
                     <router-link to='button'>Button</router-link>
                 </ol>
-                <ol class="nav-ol">2</ol>
+                <ol class="nav-ol">
+                    <router-link to='input'>Input</router-link>
+                </ol>
                 <ol class="nav-ol">3</ol>
                 <ol class="nav-ol">4</ol>
             </ul>
