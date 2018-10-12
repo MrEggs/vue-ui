@@ -15,7 +15,9 @@
                 <ol class="nav-ol">
                     <router-link to='input'>Input</router-link>
                 </ol>
-                <ol class="nav-ol">3</ol>
+                <ol class="nav-ol">
+                    <router-link to='checkbox'>Checkbox</router-link>
+                </ol>
                 <ol class="nav-ol">4</ol>
             </ul>
         </div>
