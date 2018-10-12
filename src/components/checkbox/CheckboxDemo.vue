@@ -10,33 +10,71 @@
                 使用type、plain和round属性来定义 Button 的样式。
             </span>
     </section>
-    <div class="btn-demo-show-column">
-        <ECheckbox />
+    <div class="btn-demo-show-row">
+        <ECheckbox class="btn-demo-item" :checked=unchecked :value="'未选中'" @stateChange="checkedChange" />
+        <ECheckbox class="btn-demo-item" :checked=true :value="'选中'" />
     </div>
     <section>
         <span>
             禁用状态
         </span>
     </section>
-    <div class="btn-demo-show-column">
-        <ECheckbox :disable=true />
+    <div class="btn-demo-show-row">
+        <ECheckbox class="btn-demo-item" :disable=true :checked=false :value="'未选中'" @stateChange="checkedChange" />
+        <ECheckbox class="btn-demo-item" :disable=true :checked=true :value="'选中'" />
     </div>
-</div>
+    <section>
+        <span>
+            按钮组
+        </span>
+    </section>
+    <div class="btn-demo-show-row">
+        <ECheckboxGroup :checkValues=checkedGroup @change="selectCheckbox" /><br/>
+    </div>
+        <div class="btn-demo-show-row">
+            <ECheckboxGroup :checkValues=checkedGroup :singleSelect=true @change="selectCheckbox" />
+        </div>
+    </div>
 </template>
 
 <script>
 import ECheckbox from "@/components/checkbox/components/Checkbox";
+import ECheckboxGroup from "@/components/checkbox/components/CheckboxGroup";
 
 export default {
     components: {
-        ECheckbox
+        ECheckbox,
+        ECheckboxGroup,
     },
     data() {
-        return {};
+        return {
+            checked: true,
+            unchecked: false,
+            checkedGroup: [{
+                    value: '选择1',
+                    checked: true
+                },
+                {
+                    value: '选择2',
+                    checked: false
+                },
+                {
+                    value: '选择3',
+                    checked: false
+                },
+            ]
+        };
     },
     methods: {
         alerts() {
             alert("hello world");
+        },
+        checkedChange(state) {
+            this.unchecked = state;
+            console.log(this.unchecked);
+        },
+        selectCheckbox(selectItem) {
+            console.log(selectItem);
         }
     },
     computed: {}
@@ -53,10 +91,12 @@ export default {
     font-size: 15px;
 }
 
-.btn-demo-show-column {
+.btn-demo-show-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 20px;
     border: 1px solid #e2ecf4;
 }
+
+.btn-demo-item {}
 </style>

@@ -1,6 +1,5 @@
 <template>
-<label class="check-box">
-
+<label class="check-box" >
     <span class="check-box-select">
         <span class="check-box-select-check" 
         :class="[
@@ -9,13 +8,13 @@
             {'check-box-disable-checked ':disable&&isChecked}
         ]"></span>
         <input class="check-box-select-checkbox" type="checkbox" 
-        v-model="isChecked"/>
+        :value="isChecked" @click="changeCheckState" :cvalue=value />
     </span>
     <span class="check-box-value"
     :class="[
         {'check-box-disable-text':disable}
     ]"
-    >选择1</span>
+    >{{value}}</span>
 </label>
 </template>
 
@@ -25,16 +24,31 @@ export default {
         disable: {
             type: Boolean,
             default: false,
+        },
+        checked: {
+            type: Boolean,
+            default: false,
+        },
+        value: {
+            type: String,
+            default: ''
         }
     },
     data() {
         return {
-            isChecked: true,
+            isChecked: this.checked,
         };
     },
     methods: {
         alerts() {
             alert("hello world");
+        },
+        changeCheckState(e) {
+            if (this.disable) {
+                return;
+            }
+            this.isChecked = !this.isChecked;
+            this.$emit('stateChange', this.isChecked);
         }
     },
     computed: {}
@@ -43,12 +57,13 @@ export default {
 
 <style scoped>
 .check-box {
-    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     line-height: 20px;
     position: relative;
+    margin: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 .check-box-select {}
@@ -91,7 +106,6 @@ export default {
 }
 
 .check-box-value {
-    flex: 1;
     margin-left: 5px;
 }
 
