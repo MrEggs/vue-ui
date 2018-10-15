@@ -60,6 +60,10 @@ export default {
                 },
                 {
                     value: '选择3',
+                    checked: true
+                },
+                {
+                    value: '选择4',
                     checked: false
                 },
             ]

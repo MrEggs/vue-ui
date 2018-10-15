@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="checkbox-group" @click="proxyCheckState">
-        <ECheckbox v-for="(item,index) in checkValues" :key="index" :value=item.value :checked=item.checked />
+        <ECheckbox v-for="(item,index) in checkValues" :key="index" :ekey="index" :value="item.value" :checked="item.checked" :withParent=true ref="echeckbox" />
     </div>
 </div>
 </template>
@@ -21,38 +21,63 @@ export default {
         singleSelect: {
             type: Boolean,
             default: false,
-        }
+        },
+        // min: {
+        //     type: Number,
+        //     default: 0,
+        // },
+        // max: {
+        //     type: Number,
+        //     default: 0,
+        // }
+    },
+    created() {
+        // this.checkValues.forEach((item, index) => {
+        // this.currentValue.push(item.value);
+        // this.currentSelect.push(item.checked);
+        // if (this.currentIndex < 0) {
+        //     this.currentIndex = item.index;
+        // }
+        // });
     },
     data() {
         return {
+            currentValue: [],
             currentSelect: [],
+            currentIndex: -1,
         }
     },
     methods: {
         proxyCheckState(e) {
             let flag = false;
-            if (this.singleSelect) {
-                for (const item of checkValues) {
-                    if (item.checked) {
-                        if (flag) {
-                            return;
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            }
             let target = e.target;
             let nodeName = target.nodeName;
             if (nodeName !== "INPUT") {
                 return;
             }
-            let nodeValue = target.checked;
+
+            let itemKey = target.getAttribute("ekey");
             let nodeKey = target.getAttribute("cvalue");
+            let nodeValue = this.$refs.echeckbox[itemKey].popUpCheckedState();
+
+            if (this.singleSelect) {
+                this.singleSelectSet(itemKey);
+            } else {
+                this.$refs.echeckbox[itemKey].changeCheckedState(!nodeValue);
+            }
+
             this.$emit('change', {
-                'nodeKey': nodeKey,
-                'nodeValue': nodeValue
+                'index': itemKey,
+                'Key': nodeKey,
+                'Value': !nodeValue
             });
+        },
+        singleSelectSet(selectIndex) {
+            let echeckbox = this.$refs.echeckbox;
+            echeckbox.forEach(item => {
+                item.changeCheckedState(false);
+            });
+            echeckbox[selectIndex].changeCheckedState(true);
         }
     }
 }

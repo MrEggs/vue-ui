@@ -8,7 +8,7 @@
             {'check-box-disable-checked ':disable&&isChecked}
         ]"></span>
         <input class="check-box-select-checkbox" type="checkbox" 
-        :value="isChecked" @click="changeCheckState" :cvalue=value />
+        :value="isChecked" @click="setCheckedState" :cvalue=value :ekey="ekey"/>
     </span>
     <span class="check-box-value"
     :class="[
@@ -32,7 +32,18 @@ export default {
         value: {
             type: String,
             default: ''
+        },
+        ekey: {
+            type: Number,
+            default: 0,
+        },
+        withParent: {
+            type: Boolean,
+            default: false,
         }
+    },
+    mounted() {
+
     },
     data() {
         return {
@@ -40,15 +51,24 @@ export default {
         };
     },
     methods: {
-        alerts() {
-            alert("hello world");
+        alertHello() {
+            alert("hello checkbox");
         },
-        changeCheckState(e) {
-            if (this.disable) {
+        setCheckedState(e) {
+            if (this.withParent || this.disable) {
                 return;
             }
             this.isChecked = !this.isChecked;
             this.$emit('stateChange', this.isChecked);
+        },
+
+        //向外暴露的方法 用于设置选中状态
+        changeCheckedState(state) {
+            this.isChecked = state;
+        },
+        //向外暴露的方法 用于获取选中状态
+        popUpCheckedState() {
+            return this.isChecked;
         }
     },
     computed: {}
