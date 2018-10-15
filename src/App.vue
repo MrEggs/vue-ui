@@ -2,6 +2,7 @@
 <div id="app">
     <div class="head-bar">
         <img class="head-bar-logo" src="./assets/logo.png"/>
+        <span class="head-bar-title">MrEgg 的 UI库</span>
         <div class="head-bar-name">
             Made By Lin
         </div>
@@ -9,18 +10,24 @@
     <div class="main-content">
         <div class="left-nav">
             <ul class="nav-ul">
-                <ol class="nav-ol">
-                    <router-link to='button'>Button</router-link>
-                </ol>
-                <ol class="nav-ol">
-                    <router-link to='input'>Input</router-link>
-                </ol>
-                <ol class="nav-ol">
-                    <router-link to='checkbox'>Checkbox</router-link>
-                </ol>
-                <ol class="nav-ol">
-                    <router-link to='radio'>Radio</router-link>
-                </ol>
+                <li class="nav-title">
+                    组件
+                </li>
+                <li class="nav-ol">
+                    <router-link to='button' tag="span">Button</router-link>
+                </li>
+                <li class="nav-ol">
+                    <router-link to='input' tag="span">Input</router-link>
+                </li>
+                <li class="nav-ol">
+                    <router-link to='checkbox' tag="span">Checkbox</router-link>
+                </li>
+                <li class="nav-ol">
+                    <router-link to='radio' tag="span">Radio</router-link>
+                </li>
+                <li class="nav-ol">
+                    <router-link to='inputnumber' tag="span">InputNumber</router-link>
+                </li>
             </ul>
         </div>
         <router-view class="main-view" />
@@ -66,6 +73,10 @@ body {
     margin-left: 40px;
 }
 
+.head-bar-title {
+    color: black;
+}
+
 .head-bar-name {
     position: absolute;
     right: 40px;
@@ -88,10 +99,23 @@ body {
 .nav-ul {
     margin: 0px;
     padding: 8px 24px;
+    list-style: none;
+    text-align: left;
+}
+
+.nav-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+    line-height: 40px;
 }
 
 .nav-ol {
     margin: 0px;
     padding: 8px 24px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
 }
 </style>
