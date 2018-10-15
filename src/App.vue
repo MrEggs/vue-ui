@@ -18,7 +18,9 @@
                 <ol class="nav-ol">
                     <router-link to='checkbox'>Checkbox</router-link>
                 </ol>
-                <ol class="nav-ol">4</ol>
+                <ol class="nav-ol">
+                    <router-link to='radio'>Radio</router-link>
+                </ol>
             </ul>
         </div>
         <router-view class="main-view" />

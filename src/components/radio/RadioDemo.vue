@@ -11,8 +11,8 @@
             </span>
     </section>
     <div class="btn-demo-show-row">
-        <ECheckbox class="btn-demo-item" :checked=unchecked :value="'未选中'" @stateChange="checkedChange" />
-        <ECheckbox class="btn-demo-item" :checked=true :value="'选中'" />
+        <ERadio class="btn-demo-item" :checked=unchecked :value="'未选中'" @stateChange="checkedChange" />
+        <ERadio class="btn-demo-item" :checked=true :value="'选中'" />
     </div>
     <section>
         <span>
@@ -20,8 +20,8 @@
         </span>
     </section>
     <div class="btn-demo-show-row">
-        <ECheckbox class="btn-demo-item" :disable=true :checked=false :value="'未选中'" @stateChange="checkedChange" />
-        <ECheckbox class="btn-demo-item" :disable=true :checked=true :value="'选中'" />
+        <ERadio class="btn-demo-item" :disable=true :checked=false :value="'未选中'" @stateChange="checkedChange" />
+        <ERadio class="btn-demo-item" :disable=true :checked=true :value="'选中'" />
     </div>
     <section>
         <span>
@@ -29,7 +29,7 @@
         </span>
     </section>
     <div class="btn-demo-show-row">
-        <ECheckboxGroup :checkValues=checkedGroup @change="selectCheckbox" />
+        <ERadioGroup :checkValues=checkedGroup @change="selectCheckbox" />
     </div>
     <section>
         <span>
@@ -37,19 +37,19 @@
         </span>
     </section>
     <div class="btn-demo-show-row">
-        <ECheckboxGroup :checkValues=checkedGroup :singleSelect=true @change="selectCheckbox" />
+        <ERadioGroup :checkValues=checkedGroup :singleSelect=true @change="selectCheckbox" />
     </div>
 </div>
 </template>
 
 <script>
-import ECheckbox from "@/components/checkbox/components/Checkbox";
-import ECheckboxGroup from "@/components/checkbox/components/CheckboxGroup";
+import ERadio from "@/components/radio/components/Radio";
+import ERadioGroup from "@/components/radio/components/RadioGroup";
 
 export default {
     components: {
-        ECheckbox,
-        ECheckboxGroup,
+        ERadio,
+        ERadioGroup,
     },
     data() {
         return {

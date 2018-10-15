@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Button from '@/components/button/buttonDemo'
 import Input from '@/components/input/InputDemo'
 import Checkbox from '@/components/checkbox/CheckboxDemo'
+import Radio from '@/components/radio/RadioDemo'
 
 Vue.use(Router)
 
@@ -26,8 +27,13 @@ export default new Router({
     },
     {
       path: '/Checkbox',
-      name: 'input',
+      name: 'checkbox',
       component: Checkbox
+    },
+    {
+      path: '/Radio',
+      name: 'radio',
+      component: Radio
     },
   ]
 })
