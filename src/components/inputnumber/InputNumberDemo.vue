@@ -17,22 +17,30 @@
         <span>
             禁用状态
         </span>
-    </section>
-    <div class="btn-demo-show-row">
-    </div>
-    <section>
         <span>
-            按钮组/多选
+            全部禁用 与 输入框禁用
         </span>
     </section>
     <div class="btn-demo-show-row">
+        <InputNumber v-model="defaultValue" :disable=true />
+        <InputNumber v-model="defaultValue" :writeable=false />
     </div>
     <section>
         <span>
-            按钮组/单选
+            步数
         </span>
     </section>
     <div class="btn-demo-show-row">
+        <InputNumber v-model="defaultValue" :step="1" />
+    </div>
+    <section>
+        <span>
+            精度
+        </span>
+    </section>
+    <div class="btn-demo-show-row">
+        <InputNumber class="btn-demo-show-item" v-model="defaultValue" :precision=1 :step="0.1" />
+        <InputNumber v-model="defaultValue" :precision=2 :step="0.01" />
     </div>
 </div>
 </template>
@@ -47,6 +55,7 @@ export default {
     data() {
         return {
             defaultValue: 10,
+            test: 1,
         };
     },
     methods: {
@@ -73,6 +82,10 @@ export default {
     flex-direction: row;
     padding: 20px;
     border: 1px solid #e2ecf4;
+}
+
+.btn-demo-show-item {
+    margin: 0px 20px 0px 0px;
 }
 
 .btn-demo-item {}

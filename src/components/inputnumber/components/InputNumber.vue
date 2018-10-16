@@ -1,10 +1,19 @@
 <template>
 <div class="input-number">
-    <div class="input-number-option input-number-option-deduct" @click="deductCount">-</div>
-    <div class="input-number-main">
-        <input class="input-number-main-number" type="tel" :value="value" @input="$emit('input', $event.target.value)" />
+    <div class="input-number-option input-number-option-deduct" :class="[{'input-disable':disable}]" @click="deductCount" :onfocus="disable?'this.blur()':''">-</div>
+    <div class="input-number-main" :class="[{'input-disable':disable},]">
+        <input
+        class="input-number-main-number"
+        :class="[{'input-disable':disable},]"
+        type="tel"
+        :value="getValue"
+        @input="$emit('input', $event.target.value)"
+        :onfocus="disable||!writeable?'this.blur()':''"
+        />
     </div>
-        <div class="input-number-option input-number-option-add" @click="addCount">+</div>
+        <div class="input-number-option input-number-option-add" :class="[
+        {'input-disable':disable},
+        ]" @click="addCount" :onfocus="disable?'this.blur()':''">+</div>
     </div>
 </template>
 
@@ -21,19 +30,50 @@ export default {
         defaultValue: {
             type: Number,
             default: 0
+        },
+        disable: {
+            type: Boolean,
+            default: false
+        },
+        writeable: {
+            type: Boolean,
+            default: true
+        },
+        precision: {
+            type: Number,
+            default: 0,
         }
+    },
+    created() {
+        this.basePrecision = Math.pow(10, this.precision);
     },
     data() {
         return {
+            basePrecision: 1,
         }
     },
     methods: {
         deductCount() {
-            $emit('input', --this.value);
+            if (this.disable) {
+                return;
+            }
+            this.$emit('input', ((this.value * this.basePrecision - this.step * this.basePrecision) / this.basePrecision).toFixed(this.precision));
         },
         addCount() {
-            $emit('input', ++this.value);
+            if (this.disable) {
+                return;
+            }
+            this.$emit('input', ((this.value * this.basePrecision + this.step * this.basePrecision) / this.basePrecision).toFixed(this.precision));
         },
+        onInput(e) {
+            console.log(e);
+            return false;
+        },
+    },
+    computed: {
+        getValue() {
+            return this.value;
+        }
     }
 }
 </script>
@@ -47,6 +87,7 @@ export default {
     border: 1px solid #dcdfe6;
     box-sizing: border-box;
     z-index: 1;
+    user-select: none;
 }
 
 .input-number-option {
@@ -71,5 +112,10 @@ export default {
     border: none;
     padding: 0px;
     text-align: center;
+}
+
+.input-disable {
+    background: #f5f7fa;
+    color: #c0c4cc;
 }
 </style>
