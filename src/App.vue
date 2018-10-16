@@ -28,6 +28,9 @@
                 <li class="nav-ol">
                     <router-link to='inputnumber' tag="span">InputNumber</router-link>
                 </li>
+                <li class="nav-ol">
+                    <router-link to='select' tag="span">Select</router-link>
+                </li>
             </ul>
         </div>
         <router-view class="main-view" />
