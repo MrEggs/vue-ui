@@ -31,7 +31,7 @@
         </span>
     </section>
     <div class="btn-demo-show-row">
-        <InputNumber v-model="defaultValue" :step="1" />
+        <InputNumber v-model="defaultValue" :step="5" />
     </div>
     <section>
         <span>

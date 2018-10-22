@@ -1,6 +1,6 @@
 <template>
 <div class="select">
-    <div class="select-input" @click="getWidth">
+    <div class="select-input" >
         <input class="select-main" placeholder="请选择" v-model="showValue"/>
         <span class="select-main-icon" @click="showDropdown"
         :style="{'transform': 'rotate3d(0, 0, 1, '+rotateNum+'deg)'}"></span>
@@ -24,7 +24,7 @@ export default {
     data() {
         return {
             rotateNum: 45,
-            dropdownShow: true,
+            dropdownShow: false,
             showValue: '',
             width: 0,
         }
@@ -66,6 +66,7 @@ export default {
 .select {
     display: inline-block;
     clear: both;
+    position: relative;
 }
 
 .select-input {
@@ -132,6 +133,8 @@ export default {
 
 .select-dropdown-show {
     display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .select-dropdown-item {
